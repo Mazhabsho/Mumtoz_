@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import GroupIcon from "@mui/icons-material/Group";
 import imgCourses from "../../assets/slider.jpg";
 import { Link } from "react-router-dom";
-
+import imgCourse from "../../assets/slider.jpg";
+import axios from "axios";
+import Post from "../../components/post/Post";
+import Pagination from "../../components/pagination/Pagination";
 const arr = [
   {
     title: "Keny White",
@@ -61,68 +65,89 @@ const arr = [
 ];
 
 const Course = () => {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [currentpage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(10);
+
+  const fetchPost = async () => {
+    setLoading(true);
+    const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
+    setPosts(res.data);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchPost();
+  }, []);
+
+  //get current posts
+  const indexOfLastPost = currentpage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
+  //Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const nextPage = () => setCurrentPage (prev => prev + 1);
+  const prevPage = () => setCurrentPage (prev => prev - 1);
   return (
-    <div className="w-[1170px] mx-auto">
-      <h2 className="text-5xl font-serif font-bold">Course</h2>
-      <div className="h-[50px] bg-green-200">
-        <input type="text" placeholder="search" className="my-2" />
-      </div>
-
+    <div className="w-[1150px] my-[5rem] mx-auto">
+      <h2 className="text-[28px] font-roboto text-[#333] font-bold mb-10">
+        Popular Courses
+      </h2>
       <div>
-        {arr.length > 0 ? (
-          <div className="grid grid-cols-4 gap-3">
-            <div className="col-span-3">
-              <div className="grid grid-cols-3 gap-3">
-                {arr.map((elem) => {
-                  return (
-                   
-                      <div className="border-2 w-[262.47px]">
-                        <img
-                          src={imgCourses}
-                          className="w-full h-f[250px]"
-                          alt=""
-                        />
-                        <div className="w-[90%] mx-auto">
-                          <p className="text-center text-lg py-3 text-gray-500">
-                            {elem.title}
-                          </p>
-                          <p className="text-lg text-center font-serif fot-bold">
-                            {elem.text}
-                          </p>
-                          <span className="text-gray-500 mr-5  text-lg py-2">
-                            {elem.price1}
-                          </span>
-                          <span className="text-red-500 text-lg">
-                            {elem.price2}
-                          </span>
-                        </div>
-                      </div>
-                   
-                  );
-                })}
-              </div>
-            </div>
-
-            <div className="cols-span-1">
-              {arr.map((elem, id) => {
-                return (
-                  <>
-                    <div className="space-y-[1rem]">
-                      <h3 className="text-xl font-serif font-bold">
-                        {elem.header}
-                      </h3>
-                      <p className="text-lg font=serif">{elem.course1}</p>
-                      <p className="text-lg font=serif">{elem.course2}</p>
-                      <p className="text-lg font=serif">{elem.course3}</p>
-                      <p className="text-lg font=serif">{elem.course4}</p>
-                      <p className="text-lg font=serif">{elem.course5}</p>
+        {/* {arr.length > 0 ? (
+          <div className="grid grid-cols-4 gap-5">
+            {arr.map((elem) => {
+              return (
+                <div className="border-2 relative">
+                  <img src={imgCourse} alt="" />
+                  <img
+                    src={imgCourse}
+                    className="w-[60px] h-[60px] right-[39%] top-[36%] z-50 absolute rounded-full"
+                    alt=""
+                  />
+                  <div className="w-[90%] pt-5  mx-auto">
+                    <p className="text-center text-sm mt-3 font-roboto py-2 text-[#7a7a7a]">
+                      Keny White
+                    </p>
+                    <p className="text-base text-center font-roboto fot-bold">
+                      The Complete Online Teaching Masterclass
+                    </p>
+                    <div className="w-full my-3 bg-slate-200 h-[0.5px]">
+                      <div className="w-[20%] h-[2px] mx-auto bg-yellow-600"></div>
                     </div>
-                  </>
-                );
-              })}
-            </div>
+
+                    <div className="flex justify-between items-center mb-3">
+                      <div>
+                        <GroupIcon style={{ marginTop: "-7px" }} />
+                        <span className="text-gray-500 mr-5  text-lg">520</span>
+                      </div>
+                      <div>
+                        <span className="text-green-500 text-lg font-roboto">
+                          {" "}
+                          <span className="line-through text-red-500">
+                            $520
+                          </span>{" "}
+                          free
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
-        ) : null}
+        ) : null} */}
+        <Post posts={currentPosts} loading={loading} />
+        <Pagination
+          postsPerPage={postsPerPage}
+          totalPosts={posts.length}
+          paginate={paginate}
+        />
+
+        <button onClick={prevPage} className="text-base bg-slate-400 font-roboto py-3 px-6 mr-5">prev page</button>
+        <button onClick={nextPage} className="text-base bg-slate-400 font-roboto py-3 px-6">next page</button>
       </div>
     </div>
   );

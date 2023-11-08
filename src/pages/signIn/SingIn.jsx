@@ -1,41 +1,91 @@
-import React from 'react'
-import PersonIcon from '@mui/icons-material/Person';
-import KeyIcon from '@mui/icons-material/Key';
-import logo from "../../assets/Asso Logo.png"
-import logoIcon from "../../assets/logo.svg"
-
+import React from "react";
+import PersonIcon from "@mui/icons-material/Person";
+import KeyIcon from "@mui/icons-material/Key";
+import logo from "../../assets/Asso Logo.png";
+import logoIcon from "../../assets/our.png";
+import SwipeDownAltIcon from '@mui/icons-material/SwipeDownAlt';
+import { Link } from "react-router-dom";
 const SignIn = () => {
   return (
-    <div className='bg-[#B5DAFC] h-[100vh]'>
-        <div className="w-[500px] mx-auto bg-white shadow-lg pt-[5rem] h-[100vh] my-auto">
-            <div className='w-[200px] mx-auto mb-10'>
-                <img src={logo} alt="" />
-            </div>
-            <form action="">
-              <div className='w-[90%] mx-auto border-[0.5px] border-yellow-400 my-5 bg-white'>
-              <PersonIcon style={{paddingLeft:"10px",color:"#adadad", fontSize:"40px",paddingBottom:"7px"}}/>
-              <input type="text" className='w-[90%] border-none outline-none py-3 pl-[1rem] text-xl' placeholder='Email' />
-              </div>
-               <div className='w-[90%] mx-auto border-[0.5px] border-yellow-400 my-5 bg-white'>
-               <KeyIcon style={{paddingLeft:"10px", color:"#adadad", fontSize:"40px",paddingBottom:"7px"}}/>
-              <input type="password" className='w-[90%] border-none outline-none py-3 pl-[1rem] text-xl' placeholder='Password' />
-               </div>
-               <div className='w-[90%] mx-auto'>
-               <button className='w-full text-xl text-white bg-[#1A9EDA] py-3'>log in</button>
-               </div>
-            </form>
-
-            <div className='w-[90%] mx-auto h-[80px] bg-slate-300 my-5 flex items-center gap-1 justify-center'>
-                <p className='text-lg font-serif py-3'>Is this your first time here? Click here  </p>
-                <img src={logoIcon}  className='w-[25px] h-[25px] ' alt="show down icon"/>
-            </div>
-
-            <div className='w-[90%] mx-auto flex items-center justify-center'>
-                <button className='w-full text-white bg-yellow-500 py-3 text-xl'>create a account</button>
-            </div>
+    <div className=" bg-sky-500 h-screen flex">
+      <div className="w-[500px] h-auto m-auto bg-white rounded shadow-lg">
+        <div className="w-[200px] mx-auto pt-[4rem] pb-3">
+          <img src={logo} alt="" />
         </div>
+
+        <form>
+          <div className="w-[85%] my-3 mx-auto">
+            <div className="flex items-center w-full  font-roboto  font-[12px] hover:shadow-md cursor-pointer bg-white outline-none border-[0.5px] border-yellow-500 rounded-[5px]">
+              <PersonIcon
+                style={{
+                  marginLeft: "10px",
+                  color: "#909090",
+                }}
+              />
+              <div>
+                <input
+                  type="email"
+                  className="py-[12.5px] pl-3 w-[385px] text-sm font-roboto font-[#909090] border-none outline-none rounded-lg"
+                  placeholder="Login / adress email"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="w-[85%] my-3 mx-auto">
+            <div className="flex items-center w-full hover:shadow-md cursor-pointer bg-white outline-none border-[0.5px] border-yellow-500 rounded-[5px]">
+              <KeyIcon
+                style={{
+                  marginLeft: "10px",
+                  color: "#909090",
+                }}
+              />
+              <div>
+                <input
+                  type="text"
+                  className="py-[12.5px] pl-3 w-[385px] font-roboto text-sm font-[#909090] font-thin border-none outline-none rounded-lg"
+                  placeholder="Password"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="flex justify-end w-[85%] mx-auto my-3">
+            <span className="font-roboto text-sm text-[#7d7e8c]">
+              Forgotten your username or password?
+            </span>
+          </div>
+
+          <div className="w-[85%] mx-auto">
+            <button className="flex items-center justify-center font-roboto text-white py-[13.6px] bg-sky-500 w-full font-roboto font-medium font-sm hover:shadow-md cursor-pointer outline-none border-none rounded-[5px]">
+              Log in
+            </button>
+          </div>
+        </form>
+
+        <div className="flex justify-end w-[85%] mx-auto my-3">
+          <span className="font-roboto text-sm text-[#7d7e8c]">
+            Remember username?
+          </span>
+        </div>
+
+        <div className="w-[85%] mx-auto rounded-[5px] py-5 my-3 bg-[#EBEBEB] ">
+          <h4 className="text-[#212121] ml-[10px] font-roboto font-medium text-base ">
+            Is this your first time here? 
+          </h4> 
+          <p className="text-sm font-roboto ml-[10px] text-[#212121]">Click here <SwipeDownAltIcon style={{color:"#909090"}}/></p>
+        </div>
+
+         <div className="w-[85%] mx-auto my-3 bg-slate-400 h-[0.5px]"></div>
+
+        <div className="w-[85%] mx-auto mb-[4rem]">
+            <Link to='register' className="flex items-center justify-center font-roboto text-white py-[13.6px] bg-yellow-500 w-full font-roboto font-medium font-sm hover:shadow-md cursor-pointer outline-none border-none rounded-[5px]">
+              Create new account
+            </Link>
+          </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default SignIn;

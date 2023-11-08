@@ -6,14 +6,16 @@ import OurGoal from '../../components/ourGoal/OurGoal'
 import EventMain from '../../components/events/EventMain'
 import OurAdventage from '../../components/ourAdventage/OurAdventage'
 import MainCourses from '../../components/courses/MainCourses'
+import Proccess from '../../components/process/Proccess'
 
 const Home = () => {
   return (
     <>
-    <div className='my-10'>
+  
     <SliderMain/>
-    </div>
-    <div className='w-[1150px] bg-green-500 mx-auto'>
+  
+
+    <div className='w-[1150px] mx-auto'>
    
     <div className='my-[5rem]'>
     <Statistic/>
@@ -22,14 +24,15 @@ const Home = () => {
      <OurGoal/>
      </div>
      <div className='my-[5rem]'>
-     <OurAdventage/>
-     </div>
-
-     <div className='my-[5rem]'>
      <MainCourses/>
      </div>
-     
-     <div className='my-[5rem]'>
+     <div className='mt-[5rem]'>
+     <OurAdventage/>
+     </div>
+     <div className=''>
+     <Proccess/>
+     </div>
+     <div className='mb-[5rem]'>
      <EventMain/>
      </div>
     </div>

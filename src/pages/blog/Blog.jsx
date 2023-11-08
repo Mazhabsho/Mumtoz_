@@ -1,13 +1,8 @@
-import React from 'react'
-import BlogPart from '../../components/bogPart/BlogPart'
-
+import React from "react";
+import BlogPart from "../../components/bogPart/BlogPart";
 
 const Blog = () => {
-  return (
-    <div className='w-[1150px] mx-auto'>
-        <BlogPart/>
-    </div>
-  )
-}
+  return <BlogPart />;
+};
 
-export default Blog
+export default Blog;

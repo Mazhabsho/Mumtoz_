@@ -3,7 +3,7 @@ import Footer from "../footer/Footer";
 import CallIcon from "@mui/icons-material/Call";
 import EmailIcon from "@mui/icons-material/Email";
 import { Link, Outlet } from "react-router-dom";
-import logo from "../../assets/Asso Logo.png";
+import Navbars from "../../components/navbar/Navbar";
 import Navbar from "../../components/navbar/Navbar";
 
 
@@ -32,9 +32,9 @@ const Loyout = () => {
           </div>
         </div>
       </div>
-      <Navbar />
+      <Navbar/>
       <Outlet />
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

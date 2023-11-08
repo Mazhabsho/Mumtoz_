@@ -1,99 +1,57 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import Dropdown from "../dropdown/Dropdown";
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
-
-
-// const datas = [
-//   {
-//     title: "home",
-//   },
-//   {
-//     title: "services",
-//   },
-//   {
-//     title: "events",
-//   },
-//   {
-//     title: "contact",
-//   },
-//   {
-//     title: "courses",
-//   },
-// ];
+import React from "react";
+import logo from "../../assets/Asso Logo.png";
 
 const Navbar = () => {
-  // const [dropdawn, setDropdawn] = useState(true);
-  const [open, setOpen] = useState(false);
   return (
-    <>
-      {/* <div className=" nav h-[8.5vh] bg-gray-500 z-50 text-white">
-      <div className="w-[1150px] mx-auto">
-        <div className=" flex justify-between items-center ">
-          <Link to="/">
-            <p>Mumtoz</p>
-          </Link>
+    <nav className="bg-sky-500">
+      <div className="container px-4 flex flex-wrap mx-auto">
+        {/* logo  brand*/}
+        <a href="#">
+          {" "}
+          <img src={logo} className="inline-flex p-2 w-[150px] h-[50px]" alt="" />{" "}
+        </a>
 
-          <ul className="nav_items flex justify-end gap-3 items-center my-3">
-            {datas.map((elem, id) => {
-              if (elem.title === "services") {
-                return (
-                  <li
-                    className=" text-lg font-serif uppercase"
-                    onMouseEnter={() => setDropdawn(true)}
-                    onMouseLeave={() => setDropdawn(false)}
-                  >
-                    <Link to="/">{elem.title}</Link>
-                    {dropdawn && <Dropdown />}
-                  </li>
-                );
-              }
-              return (
-                <li className=" text-lg font-serif uppercase">
-                  <Link to="/">{elem.title}</Link>
+        {/* toggle button */}
+          <button className="lg:hidden inline-flex justify-center items-center border rounded-md outline-none left-auto focus:outline-none h-10 w-10">
+          <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
+          />
+        </svg>
+          </button>
+         {/* menu */}
+
+         <div  className="w-full lg:inline-flex lg:w-auto">
+            <ul className="flex flex-col lg:flex-row lg:w-auto mt-2 lg:mt-0 group">
+                <li><a href="#" className="flex px-4 py-2 font-medium text-white">Dahsbord</a></li>
+
+                <li className="relative " x><button href="#" className="flex px-4 py-2 font-medium text-white">Dropdown</button>
+                  <div className="lg:absolute hover-group:active bg-red-500 right-0 rounded-md hover:group:avtive">
+                    <ul className="space-y-2 lg:w-48">
+                        <li><a href="#" className="flex p-2 font-medium">Salom mardum</a></li>
+                        <li><a href="#">Salom mardum</a></li>
+                        <li><a href="#">Salom mardum</a></li>
+                        <li><a href="#">Salom mardum</a></li>
+                    </ul>
+                  </div>
                 </li>
-              );
-            })}
-          </ul>
-        </div>
-      </div>
-    </div> */}
-      <nav className="bg-white">
-        <div className="flex items-center justify-around  font-medium">
-          <div className="z-50 pl-4 md:w-auto w-full flex justify-between">
-            <h3>Mumtoz</h3>
-             <div className="md:hidden" onClick={()=> setOpen(!open)}>
-             <MenuIcon name={`${open ? "close": "menu"}`}/>
-             </div>
-          </div>
 
-          <div>
-            <ul className="md:flex hidden items-center uppercase gap-8 font-serif">
-              <li>
-                <Link to="/" className="py-5 inline-block">
-                  home
-                </Link>
-              </li>
-              <Dropdown />
+                <li><a href="#" className="flex px-4 py-2 font-medium text-white">Dahsbord</a></li>
+                <li><a href="#" className="flex px-4 py-2 font-medium text-white">Dahsbord</a></li>
+                <li><a href="#" className="flex px-4 py-2 font-medium text-white">Dahsbord</a></li>
             </ul>
-          </div>
-           {/* mobile */}
-           <ul
-                className={`md:hidden bg-red-500 absolute w-full h-full bottom-0 py-10 pl-4 transition ease-linear duration-1000 
-                 ${open ? "left-0" : "left-[-100%]"}
-                `}
-              >
-                <li>
-                  <Link to="/" className="py-5 inline-block">
-                    home
-                  </Link>
-                </li>
-                <Dropdown />
-              </ul>
-        </div>
-      </nav>
-    </>
+         </div>
+      </div>
+    </nav>
   );
 };
 
